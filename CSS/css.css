@@ -1,0 +1,21 @@
+body {
+    
+}
+
+h1 {
+    color: snow;
+
+}
+
+#bt_menu {
+    display: none;
+}
+
+#iconemenu {
+    margin-right: 0px;
+
+}
+header {
+    background-image: url("Imgs/bannerhome.jpg") no-repeat fixed;
+	background-size: cover;
+}
