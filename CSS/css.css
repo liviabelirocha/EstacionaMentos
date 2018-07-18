@@ -1,5 +1,5 @@
 body {
-    
+    background-color: rgb(204, 204, 204);
 }
 
 h1 {
@@ -7,15 +7,12 @@ h1 {
 
 }
 
-#bt_menu {
-    display: none;
-}
-
-.iconemenu {
-    margin-right: 0px;
-
-}
 header {
-    background-image: url("Imgs/bannerhome.jpg") no-repeat fixed;
-	background-size: cover;
+
+}
+
+.bannerhome {
+    background-color: #3f3f3f;
+    background-image: URL: url('Imgs/bannerhome.jpg') no-repeat fixed;
+    background-size: cover; 
 }
