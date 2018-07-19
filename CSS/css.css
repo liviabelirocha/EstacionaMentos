@@ -4,15 +4,6 @@ body {
 
 h1 {
     color: snow;
-
 }
 
-header {
-
-}
-
-.bannerhome {
-    background-color: #3f3f3f;
-    background-image: URL: url('Imgs/bannerhome.jpg') no-repeat fixed;
-    background-size: cover; 
-}
+header {}
