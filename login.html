@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+	<link rel="shortcut icon" href="imgs/favicon.png" />
+	<title>Estaciona Mentos</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+	<!-- CSS personalizado -->
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+<body style="display:flex; min-height:100vh; width:100%; margin: 0; padding: 0; align-items: center; justify-content: center; flex-direction:column">
+    <div class="card text-center align-middle">
+        <div class="card-header">
+            Bem-vindo
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Login</h5>
+            <p class="card-text"></p>
+            <a href="#" class="btn btn-primary btn-lg" style="width: 200px">Autenticar</a><br><br>
+            <a href="#" class="btn btn-info btn-lg" style="width: 200px">Cadastrar</a>
+        </div>
+        <div class="card-footer text-muted">
+                  <a href="home.html">&larr; voltar</a>
+        </div>
+    </div>
+
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBGM4iFXcSVC16URRrdg-2QG56mdZhlq3Q",
+        authDomain: "estaciona-mentos.firebaseapp.com",
+        databaseURL: "https://estaciona-mentos.firebaseio.com",
+        projectId: "estaciona-mentos",
+        storageBucket: "estaciona-mentos.appspot.com",
+        messagingSenderId: "52532291267"
+    };
+    firebase.initializeApp(config);
+    </script>
+
+    <!-- JavaScript Opcional -->
+    <!-- jQuery, Popper.js, e Bootstrap JS -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
