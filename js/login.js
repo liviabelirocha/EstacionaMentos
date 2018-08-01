@@ -1,6 +1,3 @@
-var nameInput = document.getElementById('nameInput');
-var emailInput = document.getElementById('emailInput');
-var passwordInput = document.getElementById('passwordInput');
 var submitButton = document.getElementById('submitButton');
 
 //Função para os botões 'entrar' e 'cadastrar' da área de login
@@ -14,6 +11,9 @@ function Revelar(div) {
 
 // Ao clicar no botão
 submitButton.addEventListener('click', function () {
+    var nameInput = document.getElementById('nameInput');
+    var emailInput = document.getElementById('emailInput');
+    var passwordInput = document.getElementById('passwordInput');
     create(nameInput.value, emailInput.value, passwordInput.value);
 });
 
