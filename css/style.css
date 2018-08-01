@@ -1,8 +1,12 @@
 body {
-    background-color: rgb(204, 204, 204);
+    background-color: white;
 }
 
 h1 {
     color: snow;
     font-weight: bold;
 }
+
+footer-bottom {
+    background-color: rgb(102, 102, 102);
+ }
