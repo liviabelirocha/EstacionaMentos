@@ -1,0 +1,27 @@
+#banner {
+    height: 600px;
+    background-image: url(../imgs/bannerhome.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: dimgray
+}
+
+#bannerc {
+    text-align: center;
+    margin-top: 200px;
+    color: snow;
+}
+
+#bannerc h1 {
+    color: snow;
+    font-weight: bold;
+}
+
+#div1 {
+    text-align: center;
+}
+
+#div1 h2{
+    color: #313C74;
+    font-weight: bold;   
+}
