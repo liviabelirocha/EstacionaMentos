@@ -9,21 +9,35 @@ function Revelar(div) {
         document.getElementById(div).style.display = 'none';
 }
 
-// Ao clicar no botão
 submitButton.addEventListener('click', function () {
+    //Variáveis:
     var nameInput = document.getElementById('nameInput');
     var emailInput = document.getElementById('emailInput');
     var passwordInput = document.getElementById('passwordInput');
-    create(nameInput.value, emailInput.value, passwordInput.value);
+    var emailTest = document.getElementById('emailTest');
+    var passTest = document.getElementById('passTest');
+    
+    //verificando se formulário de cadastro é válido
+    if (nameInput.value == "")
+        document.getElementById('nullName').style.display = 'block';
+    else if (emailInput.value == "")
+        document.getElementById('nullEmail').style.display = 'block';
+    else if (passwordInput.value == "")
+        document.getElementById('nullPass').style.display = 'block';
+    else if (passwordInput.value.length < 8)
+        document.getElementById('nullPass2').style.display = 'block';
+    else if (emailInput.value != emailTest.value)
+        document.getElementById('invalidEmail').style.display = 'block';
+    else if (passwordInput.value != passTest.value)
+        document.getElementById('invalidPass').style.display = 'block';
+    //Criando conta:
+    else{
+        firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value).then( function(){
+            alert("Conta registrada com sucesso!");
+            location.reload();
+        }).catch(function() {
+            alert("Erro! Este email já possui cadastro!");
+            location.reload(); 
+          });
+    }
 });
-
-// Função para criar um registro no Firebase
-function create(name, email, senha) {
-    var data = {
-        Nome: name,
-        Email: email,
-        Senha: senha
-    };
-
-    return firebase.database().ref().child('Clientes').push(data);
-}
