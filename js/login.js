@@ -1,6 +1,7 @@
-var submitButton = document.getElementById('submitButton');
-var sendButton = document.getElementById('sendButton');
-//Variáveis para os botões de envar cadastro e enviar login de entrada
+var submitButton = document.getElementById('submitButton'); //Variável para botão de enviar cadastro
+var sendButton = document.getElementById('sendButton'); // Variável para botão de enviar entrada
+var passReset = document.getElementById('passReset'); // Variável para botão de recuperar senha
+var Revelar; // Variável para função dos botões 'Entrar' e 'Cadastrar'
 
 //Função para os botões 'entrar' e 'cadastrar' da área de login
 function Revelar(div) {
@@ -19,23 +20,85 @@ sendButton.addEventListener('click', function () {
 
     //Fazendo login:
     firebase.auth().signInWithEmailAndPassword(emailInputE.value, passInputE.value).then(function () {
-        location.href="user.html";
+        //Caso de login de add:
+        var user = firebase.auth().currentUser; //Variável para inicializar user do firebase
+        if (user.email === "appestacionamentos@gmail.com"){
+            location.href = "adm.html";
+        }
+        //Login usuário:
+        else {
+            location.href = "user.html";
+        }
     }).catch(function (error) {
         var errorCode = error.code;
-        //Caso em que email não possui cadastro
-        if (errorCode === 'auth/user-not-found') {
+        //Caso em que um campo foi deixado em branco
+        if (emailInputE.value == "") {
             document.getElementById('invalidEmailEnter').style.display = 'block';
+            document.getElementById('invalidEmailEnter').innerHTML = "Digite seu email";
+        }
+        else if (passInputE.value == "") {
+            document.getElementById('invalidPassEnter').style.display = 'block';
+            document.getElementById('invalidPassEnter').innerHTML = "Digite sua senha";
+        }
+        //Caso em que email não possui cadastro
+        else if (errorCode === 'auth/user-not-found') {
+            document.getElementById('invalidEmailEnter').style.display = 'block';
+            document.getElementById('invalidEmailEnter').innerHTML = "Este email não está cadastrado";
         }
         //Caso em que a senha é inválida
         else if (errorCode === 'auth/wrong-password') {
             document.getElementById('invalidPassEnter').style.display = 'block';
+            document.getElementById('invalidPassEnter').innerHTML = "Senha inválida";
+        }
+        //Caso em que email é inválido
+        else if (errorCode === 'auth/invalid-email') {
+            document.getElementById('invalidEmailEnter').style.display = 'block';
+            document.getElementById('invalidEmailEnter').innerHTML = "Digite seu email corretamente";
         }
         //Casos inesperados
-        else{
-            alert("Erro inesperado!");
+        else {
+            document.getElementById('enterAlert').className += ' alert-danger'
+            document.getElementById('textAlertEnter').innerHTML = "<strong>Erro inesperado: '" + errorCode + "'.</strong> Entre em contato."
+            document.getElementById('enterAlert').style.display = 'block';
         }
     })
 })
+
+//Recuperando senha pelo email
+passReset.addEventListener('click', function () {
+    var auth = firebase.auth(); //Variável para inicializar firebase
+    var emailInputE = document.getElementById('emailInputEnter'); //variável para email
+    auth.sendPasswordResetEmail(emailInputE.value).then(function () {
+        // Enviando email e notificando na janela.
+        document.getElementById('enterAlert').className += ' alert-success'
+        document.getElementById('textAlertEnter').innerHTML = "<strong>Link de recuperação criado!</strong> Verifique seu email."
+        document.getElementById('enterAlert').style.display = 'block';
+    }).catch(function (error) {
+        var errorCode = error.code; //Variável de controle de erros
+        if (emailInputE.value == "") {
+            document.getElementById('invalidEmailEnter').style.display = 'block';
+            document.getElementById('invalidEmailEnter').innerHTML = "Digite seu email";
+        }
+        //Caso em que email não possui cadastro
+        else if (errorCode === 'auth/user-not-found') {
+            document.getElementById('invalidEmailEnter').style.display = 'block';
+            document.getElementById('invalidEmailEnter').innerHTML = "Este email não está cadastrado";
+        }
+        //Caso em que email é inválido
+        else if (errorCode === 'auth/invalid-email') {
+            document.getElementById('invalidEmailEnter').style.display = 'block';
+            document.getElementById('invalidEmailEnter').innerHTML = "Digite seu email corretamente";
+        }
+        //Casos inesperados
+        else {
+            document.getElementById('enterAlert').className += ' alert-danger'
+            document.getElementById('textAlertEnter').innerHTML = "<strong>Erro inesperado: '" + errorCode + "'.</strong> Entre em contato."
+            document.getElementById('enterAlert').style.display = 'block';
+        }
+    });
+
+})
+
 
 //Formulário de cadastro
 submitButton.addEventListener('click', function () {
@@ -62,15 +125,39 @@ submitButton.addEventListener('click', function () {
     //Criando conta:
     else {
         firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value).then(function () {
-            alert("Conta registrada com sucesso!");
             var user = firebase.auth().currentUser;
             user.updateProfile({
                 displayName: nameInput.value
             });
-            location.reload();
-        }).catch(function () {
-            alert("Erro! Este email já possui cadastro!");
-            location.reload();
+            user.sendEmailVerification().then(function () {
+                // Enviando email de confirmação de cadastro.
+                document.getElementById('inputAlert').className += ' alert-success'
+                document.getElementById('textAlert').innerHTML = "<strong>Conta criada com sucesso!</strong> Verifique seu email."
+                document.getElementById('inputAlert').style.display = 'block';
+                document.getElementById('submitButton').style.display = 'none';
+            }).catch(function () {
+                //Caso ocorra um erro
+                document.getElementById('inputAlert').className += ' alert-danger'
+                document.getElementById('textAlert').innerHTML = "<strong>Erro inesperado.</strong> Não foi possível verificar este email."
+                document.getElementById('inputAlert').style.display = 'block';
+                user.delete();
+            })
+        }).catch(function (error) {
+            //Caso de cadastro de conta já existente:
+            if (error.code === "auth/email-already-in-use") {
+                document.getElementById('nullEmail1').style.display = 'block';
+            }
+            //Casos de email em fomato inválido:
+            else if (error.code == "auth/invalid-email") {
+                document.getElementById('nullEmail').style.display = 'block';
+            }
+            //Casos de erros inesperados:
+            else {
+                document.getElementById('inputAlert').className += ' alert-danger'
+                document.getElementById('textAlert').innerHTML = "<strong>Erro inesperado: '" + error.code + "'</strong> Entre em contato."
+                document.getElementById('inputAlert').style.display = 'block';
+            }
         })
     }
 });
+
