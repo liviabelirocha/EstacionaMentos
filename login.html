@@ -28,14 +28,32 @@
             <br>
             <form id="dadosEntrar" style="display: none;">
                 <div class="form-group" style="text-align: left;">
-                    <label for="exampleInputEmail1">Email:</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="exemplo@email.com">
+                    <label for="emailInputEnter">Email:</label>
+                    <input type="email" class="form-control" id="emailInputEnter" aria-describedby="emailHelp" placeholder="exemplo@email.com">
+                    <div class="invalid-feedback" id="invalidEmailEnter">
+                        <!--Campo para mensagens de erro-->
+                    </div>
                 </div>
                 <div class="form-group" style="text-align: left;">
-                    <label for="exampleInputPassword1">Senha:</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="sua senha">
+                    <label for="passInputEnter">Senha:</label>
+                    <input type="password" class="form-control" id="passInputEnter" placeholder="sua senha">
+                    <div class="invalid-feedback" id="invalidPassEnter">
+                        <!--Campo para mensagens de erro-->
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <!--Botão para efetuar login-->
+                <button type="button" id="sendButton" class="btn btn-primary">Enviar</button>
+                <br>
+                <!--Botão para recuperar senha-->
+                <button type="button" class="btn btn-link" id="passReset">Esqueceu a senha?</button>
+                <br>
+                <!--Campo para notificações-->
+                <div class="alert alert-dismissible fade show" role="alert" style="display: none" id="enterAlert">
+                    <div id="textAlertEnter"></div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.href='login.html'">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </form>
             <br>
             <button type="button" onclick="Revelar('dadosCadastrar')" class="btn btn-info btn-lg" style="width: 270px">Cadastrar</button>
@@ -45,24 +63,46 @@
                 <div class="form-group" style="text-align: left;">
                     <label for="nameInput">Nome:</label>
                     <input type="text" class="form-control" id="nameInput" placeholder="Seu nome">
+                    <!--Mensagens de erro:-->
+                    <div class="invalid-feedback" id="nullName"> Por favor, insira um nome. </div>
                 </div>
                 <div class="form-group" style="text-align: left;">
                     <label for="emailInput">Email:</label>
                     <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="exemplo@email.com">
+                    <!--Mensagens de erro:-->
+                    <div class="invalid-feedback" id="nullEmail1"> Este email já possui um cadastro. </div>
+                    <div class="invalid-feedback" id="nullEmail"> Por favor, insira seu email corretamente. </div>
+
+                    <small id="emailHelp" class="form-text text-muted">Este email será usado para contato e recuperação de senha.</small>
                 </div>
                 <div class="form-group" style="text-align: left;">
                     <label for="exampleInputEmail1">Confirmar email:</label>
-                    <input type="email" class="form-control" id="" aria-describedby="emailHelp" placeholder="exemplo@email.com">
+                    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="exemplo@email.com" id="emailTest">
+                    <!--Mensagens de erro:-->
+                    <div class="invalid-feedback" id="invalidEmail"> Os emails estão diferentes. </div>
                 </div>
                 <div class="form-group" style="text-align: left;">
                     <label for="passwordInput">Senha:</label>
                     <input type="password" class="form-control" id="passwordInput" placeholder="sua senha">
+                    <!--Mensagens de erro:-->
+                    <div class="invalid-feedback" id="nullPass"> Por favor, insira sua senha. </div>
+                    <div class="invalid-feedback" id="nullPass2"> Sua senha deve ter, no mínimo, 8 caracteres. </div>
                 </div>
                 <div class="form-group" style="text-align: left;">
                     <label for="exampleInputPassword1">Confirmar senha:</label>
-                    <input type="password" class="form-control" id="" placeholder="sua senha">
+                    <input type="password" class="form-control" id="passTest" placeholder="sua senha">
+                    <div class="invalid-feedback" id="invalidPass"> As senhas estão diferentes. </div>
                 </div>
                 <button type="button" class="btn btn-info" id="submitButton">Enviar</button>
+                <br>
+                <br>
+                <!--Campo para notificações-->
+                <div class="alert alert-dismissible fade show" role="alert" style="display: none" id="inputAlert">
+                    <div id="textAlert"></div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="location.href='login.html'">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </form>
         </div>
         <div class="card-footer text-muted">
@@ -72,18 +112,7 @@
 
     <!--Firebase-->
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyBGM4iFXcSVC16URRrdg-2QG56mdZhlq3Q",
-            authDomain: "estaciona-mentos.firebaseapp.com",
-            databaseURL: "https://estaciona-mentos.firebaseio.com",
-            projectId: "estaciona-mentos",
-            storageBucket: "estaciona-mentos.appspot.com",
-            messagingSenderId: "52532291267"
-        };
-        firebase.initializeApp(config);
-    </script>
+    <script src="js/firebaseconfig.js"></script>
 
     <!-- JavaScript Opcional -->
     <!-- jQuery, Popper.js, e Bootstrap JS -->
