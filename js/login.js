@@ -2,6 +2,7 @@ var submitButton = document.getElementById('submitButton'); //Variável para bot
 var sendButton = document.getElementById('sendButton'); // Variável para botão de enviar entrada
 var passReset = document.getElementById('passReset'); // Variável para botão de recuperar senha
 var Revelar; // Variável para função dos botões 'Entrar' e 'Cadastrar'
+var database = firebase.database(); //Referência para banco de dados
 
 //Função para os botões 'entrar' e 'cadastrar' da área de login
 function Revelar(div) {
@@ -22,7 +23,7 @@ sendButton.addEventListener('click', function () {
     firebase.auth().signInWithEmailAndPassword(emailInputE.value, passInputE.value).then(function () {
         //Caso de login de add:
         var user = firebase.auth().currentUser; //Variável para inicializar user do firebase
-        if (user.email === "appestacionamentos@gmail.com"){
+        if (user.email === "appestacionamentos@gmail.com") {
             location.href = "adm.html";
         }
         //Login usuário:
@@ -125,10 +126,19 @@ submitButton.addEventListener('click', function () {
     //Criando conta:
     else {
         firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value).then(function () {
+            function writeUserData(userId, name, email, passaword, imageUrl) {
+                firebase.database().ref('users/'+ userId).set({
+                    username: name,
+                    email: email,
+                    passaword: passaword,
+                    profile_picture: imageUrl
+                });
+            }
+            //Criando dado de usuário no banco
+            var id = emailInput.value.replace(".", "'point'");
+            writeUserData(id, nameInput.value, emailInput.value, passwordInput.value, "nulo");
+
             var user = firebase.auth().currentUser;
-            user.updateProfile({
-                displayName: nameInput.value
-            });
             user.sendEmailVerification().then(function () {
                 // Enviando email de confirmação de cadastro.
                 document.getElementById('inputAlert').className += ' alert-success'
@@ -142,7 +152,7 @@ submitButton.addEventListener('click', function () {
                 document.getElementById('inputAlert').style.display = 'block';
                 user.delete();
             })
-        }).catch(function (error) {
+        })/*.catch(function (error) {
             //Caso de cadastro de conta já existente:
             if (error.code === "auth/email-already-in-use") {
                 document.getElementById('nullEmail1').style.display = 'block';
@@ -157,7 +167,7 @@ submitButton.addEventListener('click', function () {
                 document.getElementById('textAlert').innerHTML = "<strong>Erro inesperado: '" + error.code + "'</strong> Entre em contato."
                 document.getElementById('inputAlert').style.display = 'block';
             }
-        })
+        })*/
     }
 });
 

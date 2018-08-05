@@ -46,12 +46,27 @@
 								<b>CONTATO</b>
 							</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" id="login" style="display: none;">
 							<a class="nav-link" href="login.html">
 								<button type="button" class="btn btn-info btn-sm">
 									<b>LOGIN</b>
+									<!--Botão de Login-->
 								</button>
-								<!--Botão de Login-->
+							</a>
+						</li>
+						<li class="nav-item" id="logout" style="display: none;">
+							<a class="nav-link" href="#">
+								<button type="button" class="btn btn-info btn-sm" id="logoutButton">
+									<b>LOGOUT</b>
+									<!--Botão de Logout-->
+								</button>
+							</a>
+						</li>
+						<li class="nav-item" id="linkUser" style="display: none;">
+							<a class="nav-link" href="user.html">
+								<u>
+									<b>CONTA&rarr;</b>
+								</u>
 							</a>
 						</li>
 					</ul>
@@ -121,11 +136,18 @@
 
 	</div>
 
+	<!--Firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+	<script src="js/firebaseconfig.js"></script>
+
 	<!-- JavaScript Opcional -->
 	<!-- jQuery, Popper.js, e Bootstrap JS -->
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
+	<!-- JavaScript Personalizado-->
+	<script src="js/home.js"></script>
 
 </body>
 

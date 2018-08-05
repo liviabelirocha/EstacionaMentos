@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="pt-br">
+
 <head>
 	<link rel="shortcut icon" href="imgs/favicon.png" />
 	<title>Estaciona Mentos</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
+
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
@@ -45,12 +46,27 @@
 								<b>CONTATO</b>
 							</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" id="login" style="display: none;">
 							<a class="nav-link" href="login.html">
 								<button type="button" class="btn btn-info btn-sm">
 									<b>LOGIN</b>
+									<!--Botão de Login-->
 								</button>
-								<!--Botão de Login-->
+							</a>
+						</li>
+						<li class="nav-item" id="logout" style="display: none;">
+							<a class="nav-link" href="#">
+								<button type="button" class="btn btn-info btn-sm" id="logoutButton">
+									<b>LOGOUT</b>
+									<!--Botão de Logout-->
+								</button>
+							</a>
+						</li>
+						<li class="nav-item" id="linkUser" style="display: none;">
+							<a class="nav-link" href="user.html">
+								<u>
+									<b>CONTA&rarr;</b>
+								</u>
 							</a>
 						</li>
 					</ul>
@@ -59,51 +75,62 @@
 		</nav>
 	</header>
 
-<!--Banner da sessão de serviços (por bootstrap personalizado)-->
-<div class="jumbotron jumbotron-fluid bannerhome" style="height: 600px; background-image: url(imgs/bannerServices.jpeg); background-repeat:no-repeat; background-size: cover; background-color: dimgray">
+	<!--Banner da sessão de serviços (por bootstrap personalizado)-->
+	<div class="jumbotron jumbotron-fluid bannerhome" style="height: 600px; background-image: url(imgs/bannerServices.jpeg); background-repeat:no-repeat; background-size: cover; background-color: dimgray">
+		<div class="container">
+			<h1 align="center">Nosso Serviço</h1>
+		</div>
+	</div>
+
 	<div class="container">
-		<h1 align="center">Nosso Serviço</h1>
-	</div>
-</div>
-	
-<div class="container">
-	<p>Por meio de nosso site, você pode cadastrar o seu veículo no estacionamento, reservando sua vaga e, a partir do momento em que seu veículo já está no estacionamento, pode ver por quanto tempo já utilizou do local e quanto deverá pagar.</p>
-	<h2 align="center">Veja aqui como reservar sua vaga!</h2><br>
-	<div class="row">
-		<div class="col-md">
-			<h3>1. Primeiramente, faça o login no site.</h3>
+		<p>Por meio de nosso site, você pode cadastrar o seu veículo no estacionamento, reservando sua vaga e, a partir do momento
+			em que seu veículo já está no estacionamento, pode ver por quanto tempo já utilizou do local e quanto deverá pagar.</p>
+		<h2 align="center">Veja aqui como reservar sua vaga!</h2>
+		<br>
+		<div class="row">
+			<div class="col-md">
+				<h3>1. Primeiramente, faça o login no site.</h3>
+			</div>
+			<div class="col-md">
+				<h3>2. Em sua página de usuário, clique em nova reserva.</h3>
+			</div>
 		</div>
-		<div class="col-md">
-			<h3>2. Em sua página de usuário, clique em nova reserva.</h3>
+		<br>
+		<div class="row">
+			<div class="col-md">
+				<h3>3. Agora escolha o tipo de automóvel e a vaga do estacionamento.</h3>
+			</div>
+			<div class="col-md">
+				<h3>4. Pronto! Sua vaga está reservada.</h3>
+			</div>
 		</div>
-	</div><br>
-	<div class="row">
-		<div class="col-md">
-			<h3>3. Agora escolha o tipo de automóvel e a vaga do estacionamento.</h3>
-		</div>
-		<div class="col-md">
-			<h3>4. Pronto! Sua vaga está reservada.</h3>
-		</div>
-	</div><br>
+		<br>
 
-	<div class="row">
-		<a href="login.html" role="button" class="btn btn-warning btn-lg btn-block">GARANTA JÁ A SUA VAGA!</a>
+		<div class="row">
+			<a href="login.html" role="button" class="btn btn-warning btn-lg btn-block">GARANTA JÁ A SUA VAGA!</a>
+		</div>
+
+		<!-- Rodapé -->
+		<div class="container" id="footer-top">
+			<div class="row"></div>
+		</div>
+		<div class="container" id="footer-bottom">
+			<p class="float-left"> © 2018, Estaciona Mentos</p>
+		</div>
 	</div>
 
-	<!-- Rodapé -->
-	<div class="container" id="footer-top">
-		<div class="row"></div>
-	</div>
-	<div class="container" id="footer-bottom">
-		<p class="float-left"> © 2018, Estaciona Mentos</p>
-	</div>
-</div>
+	<!--Firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+	<script src="js/firebaseconfig.js"></script>
 
-<!-- JavaScript Opcional -->
-<!-- jQuery, Popper.js, e Bootstrap JS -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+	<!-- JavaScript Opcional -->
+	<!-- jQuery, Popper.js, e Bootstrap JS -->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- JavaScript Personalizado-->
+	<script src="js/home.js"></script>
 
 </body>
 

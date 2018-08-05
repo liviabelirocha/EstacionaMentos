@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="pt-br">
+
 <head>
 	<link rel="shortcut icon" href="imgs/favicon.png" />
 	<title>Estaciona Mentos</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
+
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
@@ -13,42 +14,53 @@
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 
 </head>
+
 <body style="display:flex; min-height:100vh; width:100%; margin: 0; padding: 0; align-items: center; justify-content: center; flex-direction:column">
-<div class="container">
-	<div class="card text-center">
-		<div class="card-header">
-			<img src="imgs/user.png" class="rounded mx-auto d-block" alt="user" style="margin-top:-80px">		 
-			<span class="navbar-text">
-				Bem-vindo, Usuário
-			</span>
-		  <ul class="nav nav-tabs card-header-tabs">
-			<li class="nav-item">
-			  <a class="nav-link active" href="#">Sua conta</a>
-			</li>
-			<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  Menu
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					  <a class="dropdown-item" href="#">Configurações</a>
-					  <a class="dropdown-item" href="home.html">Sair</a>
-					</div>
-			</li>
-		  </ul>
+	<div class="container">
+		<div class="card text-center">
+			<div class="card-header">
+				<img src="imgs/user.png" class="rounded mx-auto d-block" alt="user" style="margin-top:-80px">
+				<span class="navbar-text">
+					Bem-vindo, <strong id="displayName">Usuário</strong>
+				</span>
+				<ul class="nav nav-tabs card-header-tabs">
+					<li class="nav-item">
+						<a class="nav-link active" href="#">Sua conta</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+						 aria-expanded="false">
+							Menu
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="#">Configurações</a>
+							<a class="dropdown-item" href="home.html">Sair</a>
+						</div>
+					</li>
+				</ul>
 
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">Suas reservas</h5>
+				<p class="card-text">Nenhuma reserva encontrada.</p>
+				<a href="#" class="btn btn-primary">Nova reserva</a>
+			</div>
 		</div>
-		<div class="card-body">
-		  <h5 class="card-title">Suas reservas</h5>
-		  <p class="card-text">Nenhuma reserva encontrada.</p>
-		  <a href="#" class="btn btn-primary">Nova reserva</a>
-		</div>
-	  </div>
-</div>
+	</div>
 
-    <!-- JavaScript Opcional -->
-    <!-- jQuery, Popper.js, e Bootstrap JS -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+	<!--Firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+	<script src="js/firebaseconfig.js"></script>
+
+	<!-- JavaScript Opcional -->
+	<!-- jQuery, Popper.js, e Bootstrap JS -->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- JavaScript Personalizado-->
+	<script src="js/user.js"></script>
+
 </body>
+
 </html>

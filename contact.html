@@ -1,142 +1,192 @@
 <!doctype html>
 <html lang="pt-br">
-<head>
-	<link rel="shortcut icon" href="imgs/favicon.png" />
-	<title>Estaciona Mentos</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	<!-- Bootstrap -->
-	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-	<!-- CSS personalizado -->
-	<link href="css/style.css" rel="stylesheet" type="text/css">
+<head>
+    <link rel="shortcut icon" href="imgs/favicon.png" />
+    <title>Estaciona Mentos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- CSS personalizado -->
+    <link href="css/style.css" rel="stylesheet" type="text/css">
     <!-- CSS contato -->
     <link href="css/contactcss.css" rel="stylesheet" type="text/css">
     <!-- Ícones -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+
 
 </head>
 
 <body>
-<header>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container">
-		<a class="navbar-brand" href="#">
-			<img src="imgs/logo.png" alt="">  <!--Ícone do cabeçalho-->
-		</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarText">
-			<ul class="navbar-nav ml-auto"> <!--Links da navbar-->
-				<li class="nav-item">
-					<a class="nav-link" href="home.html"><b>HOME</b><span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="services.html"><b>ESTACIONAMENTO</b></a>
-				</li>
-				<li class="nav-item active">
-					<a class="nav-link" href="#"><b>CONTATO</b></a>
-				</li>
-				<li class="nav-item">
-						<a class="nav-link" href="login.html"><button type="button" class="btn btn-info btn-sm"><b>LOGIN</b></button> <!--Botão de Login--></a>
-				</li>
-		  </ul>
-		</div>
-		</div>
-	  </nav>
-</header>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="imgs/logo.png" alt="">
+                    <!--Ícone do cabeçalho-->
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav ml-auto">
+                        <!--Links da navbar-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.html">
+                                <b>HOME</b>
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">
+                                <b>ESTACIONAMENTO</b>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                <b>CONTATO</b>
+                            </a>
+                        </li>
+                        <li class="nav-item" id="login" style="display: none;">
+                            <a class="nav-link" href="login.html">
+                                <button type="button" class="btn btn-info btn-sm">
+                                    <b>LOGIN</b>
+                                    <!--Botão de Login-->
+                                </button>
+                            </a>
+                        </li>
+                        <li class="nav-item" id="logout" style="display: none;">
+                            <a class="nav-link" href="#">
+                                <button type="button" class="btn btn-info btn-sm" id="logoutButton">
+                                    <b>LOGOUT</b>
+                                    <!--Botão de Logout-->
+                                </button>
+                            </a>
+                        </li>
+                        <li class="nav-item" id="linkUser" style="display: none;">
+                            <a class="nav-link" href="user.html">
+                                <u>
+                                    <b>CONTA&rarr;</b>
+                                </u>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-<!--Corpo da página-->
-<div class="banner"> <!-- Banner -->
-    <img src="" alt="Banner" class="img-fluid w-100">
-</div>
-<div id="contato" class="contato">           
-    <h1>Fale Conosco</h1>
-    <p><b>Nossos clientes são importante para nós, não hesite em nos contatar</b></p>
-    <hr>
-    <div class="container"> <!-- Ícones -->
+    <!--Corpo da página-->
+    <div class="banner">
+        <!-- Banner -->
+        <img src="" alt="Banner" class="img-fluid w-100">
+    </div>
+    <div id="contato" class="contato">
+        <h1>Fale Conosco</h1>
+        <p>
+            <b>Nossos clientes são importante para nós, não hesite em nos contatar</b>
+        </p>
+        <hr>
+        <div class="container">
+            <!-- Ícones -->
+            <div class="row">
+                <div class="col-sm">
+                    <!-- Email -->
+                    <div class="icone">
+                        <i class="fas fa-envelope"></i>
+                        <h6>contato@beflush.com</h6>
+                    </div>
+
+                </div>
+                <div class="col-sm">
+                    <!-- Telefone -->
+                    <div class="icone">
+                        <i class="fas fa-phone"></i>
+                        <h6>(85) 4002-8922 </h6>
+                    </div>
+
+                </div>
+                <div class="col-sm">
+                    <!-- Endereço -->
+                    <div class="icone">
+                        <i class="fas fa-map-marker"></i>
+                        <h6>Avenida Washigton Soares, 7722</h6>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h2>Mande-nos uma mensagem</h2>
+
+
+    </div>
+    <div class="container">
         <div class="row">
-            <div class="col-sm"> <!-- Email -->
-                <div class="icone">
-                    <i class="fas fa-envelope"></i>
-                    <h6>contato@beflush.com</h6>
+            <div class="col">
+                <!-- Formulário -->
+                <div class="input-group input-group-lg" id="coluna">
+                    <span class="input-group-addon" id="sizing-addon1"></span>
+                    <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Nome*">
+
                 </div>
+                <div class="input-group input-group-lg" id="coluna">
+                    <span class="input-group-addon" id="sizing-addon1"></span>
+                    <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Email*">
+
+                </div>
+                <div class="input-group input-group-lg" id="assunto">
+                    <span class="input-group-addon" id="sizing-addon1"></span>
+                    <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Assunto">
+
+                </div>
+
 
             </div>
-            <div class="col-sm"> <!-- Telefone -->
-                <div class="icone">
-                    <i class="fas fa-phone"></i>
-                    <h6>(85) 4002-8922 </h6>
+            <div class="col">
+                <div class="input-group" id="mensagem">
+                    <textarea name="" id="" cols="80" rows="7" class="form-control" placeholder="Mensagem*"></textarea>
                 </div>
-
-            </div>
-            <div class="col-sm"> <!-- Endereço -->
-                <div class="icone">
-                    <i class="fas fa-map-marker"></i>
-                    <h6>Avenida Washigton Soares, 7722</h6>
-                </div>
-
             </div>
         </div>
     </div>
-    <hr>
-    <h2>Mande-nos uma mensagem</h2>
-                
-                
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col"> <!-- Formulário -->
-            <div class="input-group input-group-lg" id="coluna">
-                <span class="input-group-addon" id="sizing-addon1"></span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Nome*">
-                                            
-            </div>
-            <div class="input-group input-group-lg" id="coluna">
-                <span class="input-group-addon" id="sizing-addon1"></span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Email*">
-                                            
-            </div>
-            <div class="input-group input-group-lg" id="assunto">
-                <span class="input-group-addon" id="sizing-addon1"></span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Assunto">
-                                            
-            </div>
-                        
-                        
-        </div>
-        <div class="col">
-            <div class="input-group" id="mensagem">
-                <textarea name="" id="" cols="80" rows="7" class="form-control" placeholder="Mensagem*"></textarea>
-            </div>
+    <div class="button">
+        <button id="botao" class="btn btn-lg">Enviar sua mensagem</button>
+    </div>
+
+    <div class="container-fluid">
+        <!-- Maps -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.2964183070744!2d-38.575785685902794!3d-3.745472997275024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c74bde90860863%3A0x73ceb0c8f6134fc0!2sCEOS+-+Empresa+Jr.+da+Computa%C3%A7%C3%A3o+UFC!5e0!3m2!1spt-BR!2sbr!4v1533145035404"
+            width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="container" id="footer-top">
+        <div class="row">
         </div>
     </div>
-</div>
-<div class="button">
-    <button id="botao" class="btn btn-lg">Enviar sua mensagem</button>
-</div>
-    
-<div class="container-fluid"> <!-- Maps -->
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.2964183070744!2d-38.575785685902794!3d-3.745472997275024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c74bde90860863%3A0x73ceb0c8f6134fc0!2sCEOS+-+Empresa+Jr.+da+Computa%C3%A7%C3%A3o+UFC!5e0!3m2!1spt-BR!2sbr!4v1533145035404" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
-</div>
-
-<!-- Rodapé -->
-<div class="container" id="footer-top">
-    <div class="row">
+    <div class="container">
+        <p class="float-left"> © 2018, Estaciona Mentos</p>
     </div>
-</div>
-<div class="container">
-    <p class="float-left"> © 2018, Estaciona Mentos</p>
-</div>
 
-<!-- JavaScript Opcional -->
-<!-- jQuery, Popper.js, e Bootstrap JS -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="js/firebaseconfig.js"></script>
+
+    <!-- JavaScript Opcional -->
+    <!-- jQuery, Popper.js, e Bootstrap JS -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- JavaScript Personalizado-->
+    <script src="js/home.js"></script>
 
 </body>
+
 </html>
