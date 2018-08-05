@@ -3,6 +3,7 @@ var sendButton = document.getElementById('sendButton'); // Variável para botão
 var passReset = document.getElementById('passReset'); // Variável para botão de recuperar senha
 var Revelar; // Variável para função dos botões 'Entrar' e 'Cadastrar'
 var database = firebase.database(); //Referência para banco de dados
+var testUser = true;
 
 //Função para os botões 'entrar' e 'cadastrar' da área de login
 function Revelar(div) {
@@ -18,6 +19,7 @@ sendButton.addEventListener('click', function () {
     //Variáveis:
     var emailInputE = document.getElementById('emailInputEnter');
     var passInputE = document.getElementById('passInputEnter');
+    testUser = false
 
     //Fazendo login:
     firebase.auth().signInWithEmailAndPassword(emailInputE.value, passInputE.value).then(function () {
@@ -109,6 +111,7 @@ submitButton.addEventListener('click', function () {
     var passwordInput = document.getElementById('passwordInput');
     var emailTest = document.getElementById('emailTest');
     var passTest = document.getElementById('passTest');
+    testUser = false;
 
     //verificando se formulário de cadastro é válido
     if (nameInput.value == "")
@@ -127,18 +130,21 @@ submitButton.addEventListener('click', function () {
     else {
         firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value).then(function () {
             function writeUserData(userId, name, email, passaword, imageUrl) {
-                firebase.database().ref('users/'+ userId).set({
+                firebase.database().ref('users/' + userId).set({
                     username: name,
                     email: email,
                     passaword: passaword,
-                    profile_picture: imageUrl
+                    profile_picture: imageUrl,
+                    status: 'first'
                 });
             }
-            //Criando dado de usuário no banco
-            var id = emailInput.value.replace(".", "'point'");
-            writeUserData(id, nameInput.value, emailInput.value, passwordInput.value, "nulo");
 
             var user = firebase.auth().currentUser;
+
+            //Criando dado de usuário no banco
+            var id = user.uid
+            writeUserData(id, nameInput.value, emailInput.value, passwordInput.value, "nulo");
+
             user.sendEmailVerification().then(function () {
                 // Enviando email de confirmação de cadastro.
                 document.getElementById('inputAlert').className += ' alert-success'
@@ -152,7 +158,11 @@ submitButton.addEventListener('click', function () {
                 document.getElementById('inputAlert').style.display = 'block';
                 user.delete();
             })
-        })/*.catch(function (error) {
+
+            //Realizando logout
+            firebase.auth().signOut()
+
+        }).catch(function (error) {
             //Caso de cadastro de conta já existente:
             if (error.code === "auth/email-already-in-use") {
                 document.getElementById('nullEmail1').style.display = 'block';
@@ -167,7 +177,14 @@ submitButton.addEventListener('click', function () {
                 document.getElementById('textAlert').innerHTML = "<strong>Erro inesperado: '" + error.code + "'</strong> Entre em contato."
                 document.getElementById('inputAlert').style.display = 'block';
             }
-        })*/
+        })
     }
 });
 
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        if (testUser) {
+            location.href = "user.html";
+        }
+    }
+});
