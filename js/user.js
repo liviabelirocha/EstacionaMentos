@@ -1,12 +1,12 @@
 var logoutButton = document.getElementById("logout"); //variável para botão de logout
 var testUser = true; //variável para evitar redirecionamento indesejado
 
-//Pengando nome do usuário:
-/*var id = firebase.auth().currentUser.uid;
+//Pegando nome do usuário:
+var id = firebase.auth().currentUser.uid;
 firebase.database().ref('users/'+ id +'/username').once('value').then(function (snapshot) {
     var username = snapshot.val();
     document.getElementById('displayName').innerHTML = username;
-});*/
+});
 
 
 logoutButton.addEventListener('click', function () {

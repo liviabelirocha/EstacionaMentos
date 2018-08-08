@@ -20,9 +20,11 @@
 	
 	<button type="button" id="car" onclick="time()">Carro</button>
 	<button type="button" id="moto" onclick="time()">Moto</button>
-
-    <div id="horario"></div>
-	
+	<script type="text/javascript">
+		window.onload = function(){
+			atualizarTime();
+		}
+	</script>	
     <!--Firebase-->
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
     <script src="js/firebaseconfig.js"></script>
