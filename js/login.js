@@ -142,7 +142,7 @@ submitButton.addEventListener('click', function () {
             var user = firebase.auth().currentUser;
 
             //Criando dado de usuário no banco
-            var id = user.uid
+            var id = user.uid;
             writeUserData(id, nameInput.value, emailInput.value, passwordInput.value, "nulo");
 
             user.sendEmailVerification().then(function () {
