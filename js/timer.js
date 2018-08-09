@@ -1,49 +1,29 @@
 var database = firebase.database(); //Referência para banco de dados
-var inicio; 
-var final; 
-var data = new Date();
-
-//Pegar o horario
+//Função para pegar o horario
 function time(){
-	var horas = data.getHours(); 
-	var minutos = data.getMinutes(); 
-	var inicioBruto = horas*60 + minutos; 
-	inicio = horas + ":" + minutos; 
-	
+	var dataInicio = new Date().getTime();
 	//Mandar o horario inicial para o banco de dados
 	firebase.database().ref('users/FPOMh7s4XhXdmlG786DxvbXXCwz2').update({
-		reservaInicial: inicio,
-		reservaMinutos: inicioBruto
+		inicioMS : dataInicio
 	})
 }
-
 //Função para cada vez que a pagina é atualizada
-function timeFinal(){
-	var horasf = data.getHours(); 
-	var minutosf = data.getMinutes(); 
-	var finalBruto = horasf*60 + minutosf; 
-	final = horasf + ":" + minutosf; 
-	
+function timeFinal(){ 
+	var dataAtualizada = new Date().getTime();
+	//Função para calcular a variação do tempo
 	function atualizarTime(){
 		//Puxa o tempo inicial em minutos do banco de dados
-		firebase.database().ref('users/FPOMh7s4XhXdmlG786DxvbXXCwz2/reservaMinutos').once('value').then(function(snapshot) {
-			var reservaMinutos = snapshot.val();
-			reservaMinutos = parseFloat(reservaMinutos);
-			var tempoDecorrido = finalBruto - reservaMinutos;
-			//Caso onde já passou uma hora ou mais
-			if (tempoDecorrido >= 60 ){
-				tempoDecorrido = tempoDecorrido/60;
-			}else{ //Caso onde ainda não passou uma hora
-				tempoDecorrido = tempoDecorrido/100;
-			}
-			tempoDecorrido = tempoDecorrido.toFixed(2); //Coloca duas casas decimais depois da virgula
-			tempoDecorrido = tempoDecorrido.toString(); //Transforma o Float em String
-			tempoDecorrido = tempoDecorrido.replace(".", ":"); //Substitui o "." por ":"
-			
+		firebase.database().ref('users/FPOMh7s4XhXdmlG786DxvbXXCwz2/inicioMS').once('value').then(function(snapshot) {
+			var dataInicio = snapshot.val();
+			dataInicio = parseFloat(dataInicio);
+			var tempoDecorrido = dataAtualizada - dataInicio;
+			tempoDecorrido = tempoDecorrido/3600000;
+			tempoDecorrido = tempoDecorrido.toFixed(2);
+			tempoDecorrido = tempoDecorrido.toString();
+			tempoDecorrido = tempoDecorrido.replace(".", ":");
 			//Mandar o tempo passado para o banco de dados
 			firebase.database().ref('users/FPOMh7s4XhXdmlG786DxvbXXCwz2').update({
-				reservaFinal: final,
-				total: tempoDecorrido
+				tempoTotal: tempoDecorrido
 			})
 		});
 	}
