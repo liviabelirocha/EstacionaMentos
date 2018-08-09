@@ -15,16 +15,17 @@
     <!-- Ícones -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
+	<script type="text/javascript">
+	window.onload = function(){
+		timeFinal();
+	}
+	</script>
 </head>
 <body>
 	
 	<button type="button" id="car" onclick="time()">Carro</button>
 	<button type="button" id="moto" onclick="time()">Moto</button>
-	<script type="text/javascript">
-		window.onload = function(){
-			atualizarTime();
-		}
-	</script>	
+	<div id="kek"></div>		
     <!--Firebase-->
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
     <script src="js/firebaseconfig.js"></script>
