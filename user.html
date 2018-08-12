@@ -21,7 +21,8 @@
 			<div class="card-header">
 				<img src="imgs/user.png" class="rounded mx-auto d-block" alt="user" style="margin-top:-80px">
 				<span class="navbar-text">
-					Bem-vindo, <strong id="displayName">Usuário</strong>
+					Bem-vindo,
+					<strong id="displayName">Usuário</strong>
 				</span>
 				<ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
@@ -35,7 +36,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="#">Configurações</a>
 							<a class="dropdown-item" href="home.html">Home</a>
-							<button type="button" class="dropdown-item" id="logout">Sair</button>
+							<button type="button" class="dropdown-item" id="logout" onclick="logoutRed('home.html')">Sair</button>
 						</div>
 					</li>
 				</ul>
@@ -43,8 +44,54 @@
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">Suas reservas</h5>
-				<p class="card-text">Nenhuma reserva encontrada.</p>
-				<a href="#" class="btn btn-primary">Nova reserva</a>
+				<p class="card-text" id='requestDefault'>Nenhuma reserva encontrada.</p>
+				<table class="table" id='requestList'>
+					<thead>
+						<tr>
+							<th scope="col">Local</th>
+							<th scope="col">Veículo</th>
+							<th scope="col">Placa</th>
+							<th scope="col">Tempo</th>
+							<th scope="col">Valor</th>
+							<th scope="col">Status</th>
+						</tr>
+					</thead>
+				</table>
+				<button type="button" class="btn btn-primary" onclick="Revelar('request')">Nova reserva</button>
+				<div id="request" style="display: none;">
+					<br> [MAPA GRÁFICO]
+					<br>
+					<br>
+
+					<!--Campos provisórios para substituir mapa gráfico -->
+					<form class="form-inline">
+						<label class="my-1 mr-2" for="car">Veículo</label>
+						<select class="custom-select my-1 mr-sm-2" id="car">
+							<option selected>Selecione...</option>
+							<option value="carro">Carro</option>
+							<option value="moto">Moto</option>
+							<option value="grande porte">Grande Porte</option>
+						</select>
+
+						<label class="my-1 mr-2" for="place">Local</label>
+						<select class="custom-select my-1 mr-sm-2" id="place">
+							<option selected>Selecione...</option>
+							<option value="A1">A1</option>
+							<option value="A2">A2</option>
+							<option value="B1">B1</option>
+							<option value="B2">B2</option>
+							<option value="C1">C1</option>
+							<option value="C2">C2</option>
+						</select>
+
+						<label class="my-1 mr-2" for="board">Informe sua placa</label>
+						<input type="text" id="board" class="form-control">
+						<br>
+						<br>
+					</form>
+
+					<button type="button" class="btn btn-primary my-1" onclick="createRequest()">Concluir</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -60,7 +107,11 @@
 	<script src="js/bootstrap.min.js"></script>
 
 	<!-- JavaScript Personalizado-->
-	<script src="js/user.js"></script>
+	<script src="js/app.js"></script>
+	<script>
+		//Impedindo acesso sem login:
+		watchAuth();
+	</script>
 
 </body>
 
