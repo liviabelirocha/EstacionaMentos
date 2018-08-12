@@ -18,6 +18,9 @@ function timeFinal(){
 			dataInicio = parseFloat(dataInicio);
 			var tempoDecorrido = dataAtualizada - dataInicio;
 			tempoDecorrido = tempoDecorrido/3600000;
+			if (tempoDecorrido%3600000 > 60){
+				tempoDecorrido = tempoDecorrido + 0.4;
+			}
 			tempoDecorrido = tempoDecorrido.toFixed(2);
 			tempoDecorrido = tempoDecorrido.toString();
 			tempoDecorrido = tempoDecorrido.replace(".", ":");
@@ -29,4 +32,3 @@ function timeFinal(){
 	}
 	atualizarTime();
 }
-
