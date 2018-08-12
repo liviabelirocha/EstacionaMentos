@@ -16,15 +16,6 @@ var redir_global = true; //Variável para controle de redirecionamentos
 - [362] atualizeData(caminho, retorno): Busca um dado no banco de dados a partir do 'caminho' e modifica o 'retorno' na página
 - [369] timeFinal(caminho): Gera o tempo decorrida da reserva pelo usuário
 
-
-
-
-
-
-
-
-
-
  */
 
 //-----------------SITE:
@@ -376,6 +367,9 @@ function timeFinal(caminho){
 			dataInicio = parseFloat(dataInicio);
 			var tempoDecorrido = dataAtualizada - dataInicio;
 			tempoDecorrido = tempoDecorrido/3600000;
+			if (tempoDecorrido%3600000 > 60){
+				tempoDecorrido = tempoDecorrido + 0.4;
+			}
 			tempoDecorrido = tempoDecorrido.toFixed(2);
 			tempoDecorrido = tempoDecorrido.toString();
 			tempoDecorrido = tempoDecorrido.replace(".", ":");
