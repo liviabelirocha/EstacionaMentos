@@ -382,20 +382,11 @@ function timeFinal(caminho){
 	atualizarTime();
 }
 
-
-
-
-
-
 /* FAZER/CONSERTAR:
 - Integrar página do adm
 - Cronometro carrega tempo uma única vez
-- Cronometro estrapola 60 minutos
 - Reservas se sobreescrevem
 - Valores de preço
 - Mapa gráfico
 - Funções de controle do adm
-
-
-
 */
