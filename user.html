@@ -45,23 +45,21 @@
 			<div class="card-body">
 				<h5 class="card-title">Suas reservas</h5>
 				<p class="card-text" id='requestDefault'>Nenhuma reserva encontrada.</p>
-				<table class="table" id='requestList'>
-					<thead>
-						<tr>
-							<th scope="col">Local</th>
-							<th scope="col">Veículo</th>
-							<th scope="col">Placa</th>
-							<th scope="col">Tempo</th>
-							<th scope="col">Valor</th>
-							<th scope="col">Status</th>
-						</tr>
-					</thead>
-				</table>
+				<div class="table-responsive">
+					<table class="table" id='requestList'>
+						<thead>
+							<tr>
+								<th scope="col">Local</th>
+								<th scope="col">Veículo</th>
+								<th scope="col">Placa</th>
+								<th scope="col">Tempo</th>
+								<th scope="col">Valor</th>
+								<th scope="col">Status</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
 				<button type="button" class="btn btn-primary" onclick="Revelar('request')">Nova reserva</button>
-				<div id="request" style="display: none;">
-					<br> [MAPA GRÁFICO]
-					<br>
-					<br>
 
 					<!--Campos provisórios para substituir mapa gráfico -->
 					<form class="form-inline">
@@ -94,7 +92,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
 	<!--Firebase-->
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>

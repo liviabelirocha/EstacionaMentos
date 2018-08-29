@@ -42,7 +42,7 @@ function navLog() {
     });
 }
 
-//-------------------AREA DE LOGIN:
+//AREA DE LOGIN:
 
 //Função para os botões 'entrar' e 'cadastrar' da área de login
 function Revelar(div) {
@@ -230,7 +230,7 @@ function redirectAuth(local) {
 };
 
 
-//-------------------AREA DO USUÁRIO:
+//AREA DO USUÁRIO:
 
 //Função de logout (com redirecionamento)
 function logoutRed(local) {
@@ -268,19 +268,16 @@ function changeName() {
     });
 }
 
-var dataInicio = 0;
-
 //Função para realizar reserva na área do usuário
 function createRequest() {
     //Buscando informs usuário atual:
     var user = firebase.auth().currentUser;
 
     //Valores do pedido
-    var car = document.getElementById('car').value;
     var place = document.getElementById('place').value;
     var board = document.getElementById('board').value;
     var car = document.getElementById('car').value;
-    dataInicio = new Date().getTime();
+    var dataInicio = new Date().getTime();
 
     //Gerando uma id para pedido:
     var requestKey = firebase.database().ref().child('requests').push().key;
@@ -337,14 +334,14 @@ function showRequests() {
 				linha.appendChild(timeItem);
 
 				var priceItem = document.createElement("td");
-				priceItem.innerHTML = '--'
+				priceItem.innerHTML = preco(values);
 				linha.appendChild(priceItem);
 
 				var statusItem = document.createElement("td");
 				statusItem.innerHTML = values['status']
 				linha.appendChild(statusItem);
 
-				//Motando tavela:
+				//Motando tabela:
 				corpo.appendChild(linha);
 				requestList.appendChild(corpo);
 				})	
@@ -372,11 +369,26 @@ function timeFinal(dataInicio){
 	return hora;
 } 
 
+function preco(values){
+	var horas = parseInt(timeFinal(values["inicioMS"]).split(":")[0]);
+	var valor = 0;
+	if (values["veiculo"] == "moto"){
+		valor = 2 * (horas+1);
+		valor = "R$" + valor + ",00"
+	}
+	if (values["veiculo"] == "carro"){
+		valor = 4 * (horas+1);
+		valor = "R$" + valor + ",00"
+	}
+	if (values["veiculo"] == "grande porte"){
+		valor = 6 * (horas+1);
+		valor = "R$" + valor + ",00"
+	}
+	return valor;
+}
+
 /* FAZER/CONSERTAR:
 - Integrar página do adm
-- Cronometro carrega tempo uma única vez
-- Reservas se sobreescrevem
 - Valores de preço
-- Mapa gráfico
 - Funções de controle do adm
 */
