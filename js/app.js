@@ -15,10 +15,9 @@ var redir_global = true; //Variável para controle de redirecionamentos
 - [312] showRequests(): Mostra reservas do usuário na página
 - [362] atualizeData(caminho, retorno): Busca um dado no banco de dados a partir do 'caminho' e modifica o 'retorno' na página
 - [369] timeFinal(caminho): Gera o tempo decorrida da reserva pelo usuário
-
  */
 
-//-----------------SITE:
+//SITE:
 
 //Função para logout (sem redirecionamento):
 function logout() {
@@ -269,6 +268,8 @@ function changeName() {
     });
 }
 
+var dataInicio = 0;
+
 //Função para realizar reserva na área do usuário
 function createRequest() {
     //Buscando informs usuário atual:
@@ -279,12 +280,12 @@ function createRequest() {
     var place = document.getElementById('place').value;
     var board = document.getElementById('board').value;
     var car = document.getElementById('car').value;
-    var dataInicio = new Date().getTime();
+    dataInicio = new Date().getTime();
 
     //Gerando uma id para pedido:
     var requestKey = firebase.database().ref().child('requests').push().key;
 
-    //Atualzando banco de dados
+    //Atualizando banco de dados
     firebase.database().ref('requests/' + requestKey).update({
         proprieterio: user.email,
         inicioMS: dataInicio,
@@ -293,9 +294,11 @@ function createRequest() {
         local: place,
         status: 'ativo'
     });
-    firebase.database().ref('users/' + user.uid + '/resquests/').update({
-        key: requestKey
-    });
+	
+	var update = {};
+	update[requestKey] = requestKey;
+	
+    firebase.database().ref('users/' + user.uid + '/requests/').update(update);
     location.href = "user.html";
 }
 
@@ -304,48 +307,48 @@ function showRequests() {
     //Buscando informs usuário atual:
     var user = firebase.auth().currentUser;
     var requestList = document.getElementById('requestList');
-
+	
     //Buscando reservas:
-    firebase.database().ref('users/' + user.uid + '/resquests').on('value', function (snapshot) {
-        document.getElementById('requestDefault').innerHTML = ''; //Limpando campo da lista
+    firebase.database().ref('users/' + user.uid + '/requests').on('value', function (snapshot) {
+		for(key in snapshot.val()){
+			document.getElementById('requestDefault').innerHTML = ''; //Limpando campo da lista
+			var caminho = 'requests/' + key +'/'; //Chave para caminho da reserva
+			
+			firebase.database().ref(caminho).on('value', function (values){
+				values = values.val();
+				//Criando itens para tabela a partir dos dados da reserva:
+				var corpo = document.createElement("tbody");
+				var linha = document.createElement("tr");
 
-        var key = snapshot.val().key; //Chave para caminho da reserva
-        var caminho = 'requests/' + key +'/';
+				var placeItem = document.createElement("td");
+				placeItem.innerHTML = values['local']
+				linha.appendChild(placeItem);
 
-        //Criando itens para tabela a partir dos dados da reserva:
-        var corpo = document.createElement("tbody");
-        var linha = document.createElement("tr");
+				var veiculoItem = document.createElement("td");
+				veiculoItem.innerHTML = values['veiculo'];
+				linha.appendChild(veiculoItem);
 
-        var placeItem = document.createElement("td");
-        atualizeData(caminho + 'local', placeItem);
-        linha.appendChild(placeItem);
+				var boardItem = document.createElement("td");
+				boardItem.innerHTML = values['placa']
+				linha.appendChild(boardItem);
+				
+				var timeItem = document.createElement("td");
+				timeItem.innerHTML = timeFinal(values['inicioMS']);
+				linha.appendChild(timeItem);
 
-        var veiculoItem = document.createElement("td");
-        atualizeData(caminho + 'veiculo', veiculoItem);
-        linha.appendChild(veiculoItem);
+				var priceItem = document.createElement("td");
+				priceItem.innerHTML = '--'
+				linha.appendChild(priceItem);
 
-        var boardItem = document.createElement("td");
-        atualizeData(caminho + 'placa', boardItem);
-        linha.appendChild(boardItem);
+				var statusItem = document.createElement("td");
+				statusItem.innerHTML = values['status']
+				linha.appendChild(statusItem);
 
-        //Atualizando tempo
-        timeFinal(caminho);
-
-        var timeItem = document.createElement("td");
-        atualizeData(caminho + 'tempoTotal', timeItem);
-        linha.appendChild(timeItem);
-
-        var priceItem = document.createElement("td");
-        priceItem.innerHTML = '--'
-        linha.appendChild(priceItem);
-
-        var statusItem = document.createElement("td");
-        atualizeData(caminho + 'status', statusItem);
-        linha.appendChild(statusItem);
-
-        //Motando tavela:
-        corpo.appendChild(linha);
-        requestList.appendChild(corpo);
+				//Motando tavela:
+				corpo.appendChild(linha);
+				requestList.appendChild(corpo);
+				})	
+		}
     })
 }
 
@@ -356,31 +359,18 @@ function atualizeData(caminho, retorno) {
     })
 }
 
-//Função para cada vez que a pagina é atualizada
-function timeFinal(caminho){ 
+function timeFinal(dataInicio){
 	var dataAtualizada = new Date().getTime();
-	//Função para calcular a variação do tempo
-	function atualizarTime(){
-		//Puxa o tempo inicial em minutos do banco de dados
-		firebase.database().ref(caminho + 'inicioMS').once('value').then(function(snapshot) {
-			var dataInicio = snapshot.val();
-			dataInicio = parseFloat(dataInicio);
-			var tempoDecorrido = dataAtualizada - dataInicio;
-			tempoDecorrido = tempoDecorrido/3600000;
-			if (tempoDecorrido%3600000 > 60){
-				tempoDecorrido = tempoDecorrido + 0.4;
-			}
-			tempoDecorrido = tempoDecorrido.toFixed(2);
-			tempoDecorrido = tempoDecorrido.toString();
-			tempoDecorrido = tempoDecorrido.replace(".", ":");
-			//Mandar o tempo passado para o banco de dados
-			firebase.database().ref(caminho).update({
-				tempoTotal: tempoDecorrido
-			})
-		});
-	}
-	atualizarTime();
-}
+	var tempoDecorridoHoras = dataAtualizada - dataInicio;
+	tempoDecorridoHoras = tempoDecorridoHoras/3600000;
+	var tempoDecorridoMinutos = tempoDecorridoHoras%1*60;
+	var hora = ((tempoDecorridoHoras < 10) ? "0" : "") +
+		Math.floor(tempoDecorridoHoras) + 
+		":" + 
+		((tempoDecorridoMinutos < 10) ? "0" : "") + 
+		Math.floor(tempoDecorridoMinutos);
+	return hora;
+} 
 
 /* FAZER/CONSERTAR:
 - Integrar página do adm
