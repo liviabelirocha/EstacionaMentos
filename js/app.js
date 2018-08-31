@@ -15,6 +15,16 @@ var redir_global = true; //Variável para controle de redirecionamentos
 - [312] showRequests(): Mostra reservas do usuário na página
 - [362] atualizeData(caminho, retorno): Busca um dado no banco de dados a partir do 'caminho' e modifica o 'retorno' na página
 - [369] timeFinal(caminho): Gera o tempo decorrida da reserva pelo usuário
+
+
+
+
+
+
+
+
+
+
  */
 
 //SITE:
@@ -391,4 +401,7 @@ function preco(values){
 - Integrar página do adm
 - Valores de preço
 - Funções de controle do adm
+- Mudar função de reserva do usuário
+- Fazer mapa gráfico
+- Ajeitar bug adm
 */
