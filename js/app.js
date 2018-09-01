@@ -15,6 +15,16 @@ var redir_global = true; //Variável para controle de redirecionamentos
 - [312] showRequests(): Mostra reservas do usuário na página
 - [362] atualizeData(caminho, retorno): Busca um dado no banco de dados a partir do 'caminho' e modifica o 'retorno' na página
 - [369] timeFinal(caminho): Gera o tempo decorrida da reserva pelo usuário
+
+
+
+
+
+
+
+
+
+
  */
 
 //SITE:
@@ -268,7 +278,8 @@ function changeName() {
     });
 }
 
-//Função para realizar reserva na área do usuário
+//Função para realizar reserva na área do administrador
+
 function createRequest() {
     //Buscando informs usuário atual:
     var user = firebase.auth().currentUser;
@@ -297,6 +308,36 @@ function createRequest() {
 	
     firebase.database().ref('users/' + user.uid + '/requests/').update(update);
     location.href = "user.html";
+} 
+
+//Função para realizar reserva na área do usuário
+
+function reservaVaga(){
+	//Buscando informs usuario atual
+	var user = firebase.auth().currentUser;
+	
+	//Valores do pedido
+    var board = document.getElementById('board').value;
+    var car = document.getElementById('car').value;
+	var data = document.getElementById('data').value;
+	var horario = document.getElementById('hora').value
+	
+	//Gerando uma id para pedido
+	var requestKey = firebase.database().ref().child('requests').push().key;
+	
+	//Atualizando banco de dados
+	firebase.database().ref('requests/' + requestKey).update({
+		proprietario: user.email,
+		veiculo: car,
+		data: data,
+		horario: horario
+		
+	});
+	
+	var update = {};
+	update[requestKey] = requestKey;
+	firebase.database().ref('users/' + user.uid + '/requests/').update(update);
+    location.href = "user.html";
 }
 
 //Mostrando lista de reservas na página do usuário
@@ -316,10 +357,6 @@ function showRequests() {
 				//Criando itens para tabela a partir dos dados da reserva:
 				var corpo = document.createElement("tbody");
 				var linha = document.createElement("tr");
-
-				var placeItem = document.createElement("td");
-				placeItem.innerHTML = values['local']
-				linha.appendChild(placeItem);
 
 				var veiculoItem = document.createElement("td");
 				veiculoItem.innerHTML = values['veiculo'];
@@ -391,4 +428,7 @@ function preco(values){
 - Integrar página do adm
 - Valores de preço
 - Funções de controle do adm
+- Mudar função de reserva do usuário
+- Fazer mapa gráfico
+- Ajeitar bug adm
 */
