@@ -320,7 +320,9 @@ function reservaVaga(){
     var board = document.getElementById('board').value;
     var car = document.getElementById('car').value;
 	var data = document.getElementById('data').value;
-	var horario = document.getElementById('hora').value
+	var hora = document.getElementById('hora').value
+	
+	var horario = (data + " " + "-" + " " + hora);
 	
 	//Gerando uma id para pedido
 	var requestKey = firebase.database().ref().child('requests').push().key;
@@ -329,9 +331,11 @@ function reservaVaga(){
 	firebase.database().ref('requests/' + requestKey).update({
 		proprietario: user.email,
 		veiculo: car,
-		data: data,
-		horario: horario
-		
+		horario: horario,
+		placa: board,
+		status: "inativo",
+		tempo: "--",
+		preço: "--"
 	});
 	
 	var update = {};
@@ -365,6 +369,10 @@ function showRequests() {
 				var boardItem = document.createElement("td");
 				boardItem.innerHTML = values['placa']
 				linha.appendChild(boardItem);
+				
+				var horarioItem = document.createElement("td");
+				horarioItem.innerHTML = values['horario'];
+				linha.appendChild(horarioItem);
 				
 				var timeItem = document.createElement("td");
 				timeItem.innerHTML = timeFinal(values['inicioMS']);
@@ -426,8 +434,7 @@ function preco(values){
 
 /* FAZER/CONSERTAR:
 - Integrar página do adm
-- Valores de preço
-- Funções de controle do adm
+- Funções de controle do adm	
 - Mudar função de reserva do usuário
 - Fazer mapa gráfico
 - Ajeitar bug adm
