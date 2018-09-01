@@ -374,13 +374,23 @@ function showRequests() {
 				horarioItem.innerHTML = values['horario'];
 				linha.appendChild(horarioItem);
 				
-				var timeItem = document.createElement("td");
-				timeItem.innerHTML = timeFinal(values['inicioMS']);
-				linha.appendChild(timeItem);
+				if (values['status'] == "inativo"){
+					var timeItem = document.createElement("td");
+					timeItem.innerHTML = "--";
+					linha.appendChild(timeItem);
 
-				var priceItem = document.createElement("td");
-				priceItem.innerHTML = preco(values);
-				linha.appendChild(priceItem);
+					var priceItem = document.createElement("td");
+					priceItem.innerHTML = "--";
+					linha.appendChild(priceItem);
+				}else{
+					var timeItem = document.createElement("td");
+					timeItem.innerHTML = timeFinal(values['inicioMS']);
+					linha.appendChild(timeItem);
+
+					var priceItem = document.createElement("td");
+					priceItem.innerHTML = preco(values);
+					linha.appendChild(priceItem);
+				}
 
 				var statusItem = document.createElement("td");
 				statusItem.innerHTML = values['status']
@@ -434,12 +444,7 @@ function preco(values){
 
 /* FAZER/CONSERTAR:
 - Integrar página do adm
-<<<<<<< HEAD
-- Funções de controle do adm	
-=======
-- Valores de preço
 - Funções de controle do adm
->>>>>>> e1341c2a17df4bda2e9ff84b62240c40c3a0a92e
 - Mudar função de reserva do usuário
 - Fazer mapa gráfico
 - Ajeitar bug adm
