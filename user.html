@@ -61,6 +61,7 @@
 				
 				<button type="button" class="btn btn-primary" onclick="Revelar('request')">Nova reserva</button>
 					<div id = 'request'>
+<<<<<<< HEAD
 						<br><form class="form-inline">
 							<label for="calendario">Data de Entrada</label>
 							<input class="form-control" type="text" id="data" placeholder="dd/mm/aaaa"/>
@@ -78,6 +79,36 @@
 							<input class="form-control" type="text" id="hora" placeholder="hh:mm"/>
 						</form>
 						<br><button type="button" class="btn btn-primary my-1" onclick="reservaVaga()">Concluir</button>
+=======
+					<!--Campos provisórios para substituir mapa gráfico -->
+					<form class="form-inline">
+						<label class="my-1 mr-2" for="car">Veículo</label>
+						<select class="custom-select my-1 mr-sm-2" id="car">
+							<option selected>Selecione...</option>
+							<option value="carro">Carro</option>
+							<option value="moto">Moto</option>
+							<option value="grande porte">Grande Porte</option>
+						</select>
+
+						<label class="my-1 mr-2" for="place">Local</label>
+						<select class="custom-select my-1 mr-sm-2" id="place">
+							<option selected>Selecione...</option>
+							<option value="A1">A1</option>
+							<option value="A2">A2</option>
+							<option value="B1">B1</option>
+							<option value="B2">B2</option>
+							<option value="C1">C1</option>
+							<option value="C2">C2</option>
+						</select>
+
+						<label class="my-1 mr-2" for="board">Informe sua placa</label>
+						<input type="text" id="board" class="form-control">
+						<br>
+						<br>
+					</form>
+
+					<button type="button" class="btn btn-primary my-1" onclick="createRequest()">Concluir</button>
+>>>>>>> e1341c2a17df4bda2e9ff84b62240c40c3a0a92e
 					</div>
 				</div>
 			</div>

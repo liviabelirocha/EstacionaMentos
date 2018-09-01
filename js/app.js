@@ -434,7 +434,12 @@ function preco(values){
 
 /* FAZER/CONSERTAR:
 - Integrar página do adm
+<<<<<<< HEAD
 - Funções de controle do adm	
+=======
+- Valores de preço
+- Funções de controle do adm
+>>>>>>> e1341c2a17df4bda2e9ff84b62240c40c3a0a92e
 - Mudar função de reserva do usuário
 - Fazer mapa gráfico
 - Ajeitar bug adm
