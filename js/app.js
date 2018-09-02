@@ -231,17 +231,17 @@ function register() {
 };
 
 //Função para redirecionamento em caso usuário ja esteja autenticado
-function redirectAuth(local) {
+function redirectAuth() {
     firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            location.href = local;
+        if (user.email === 'appestacionamentos@gmail.com') {
+            location.href = 'adm.html';
+        } else {
+            location.href = 'user.html';
         }
     })
 };
 
-
 //AREA DO USUÁRIO:
-
 //Função de logout (com redirecionamento)
 function logoutRed(local) {
     redir_global = false;
@@ -447,5 +447,4 @@ function preco(values){
 - Funções de controle do adm
 - Mudar função de reserva do usuário
 - Fazer mapa gráfico
-- Ajeitar bug adm
 */
