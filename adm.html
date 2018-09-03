@@ -12,6 +12,7 @@
 
 	<!-- CSS personalizado -->
 	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="css/check.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -43,10 +44,22 @@
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">Reservas</h5>
-				<p class="card-text">Nenhuma reserva encontrada.</p>
-				<br>
-				<h5 class="card-title">Veículos</h5>
-				<p class="card-text">Nenhuma veículo encontrado.</p>
+				<div class="table-responsive">
+					<table class="table" id='requestList'>
+						<thead>
+							<tr>
+								<th scope="col">Ativar</th>
+								<th scope="col">Veículo</th>
+								<th scope="col">Placa</th>
+								<th scope="col">Horário</th>
+								<th scope="col">Tempo</th>
+								<th scope="col">Valor</th>
+								<th scope="col">Status</th>
+								<th scope="col">Desativar</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
 				<a href="#" class="btn btn-primary">Novo registro</a>
 			</div>
 		</div>
@@ -71,6 +84,8 @@
 		watchAuth();
 		//Impedindo acesso por outros usuários:
 		admBlock();
+		
+		showAllRequests();
 	</script>
 </body>
 
