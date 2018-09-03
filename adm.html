@@ -35,7 +35,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="#">Configurações</a>
 							<a class="dropdown-item" href="home.html">Home</a>
-							<button type="button" class="dropdown-item" id="logout">Sair</button>
+							<button type="button" class="dropdown-item" id="logout" onclick="logoutRed('home.html')">Sair</button>
 						</div>
 					</li>
 				</ul>
@@ -47,7 +47,7 @@
 				<br>
 				<h5 class="card-title">Veículos</h5>
 				<p class="card-text">Nenhuma veículo encontrado.</p>
-				<a href="timer.html" class="btn btn-primary">Novo registro</a>
+				<a href="#" class="btn btn-primary">Novo registro</a>
 			</div>
 		</div>
 	</div>
@@ -64,6 +64,14 @@
 
 	<!-- JavaScript Personalizado-->
 	<script src="js/adm.js"></script>
+	<!--Arquivo provisório-->
+	<script src="js/app.js"></script>
+	<script>
+		//Impedindo acesso sem login:
+		watchAuth();
+		//Impedindo acesso por outros usuários:
+		admBlock();
+	</script>
 </body>
 
 </html>

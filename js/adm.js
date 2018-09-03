@@ -1,4 +1,4 @@
-var user = firebase.auth().currentUser; //Variável para inicializar user do firebase
+/*var user = firebase.auth().currentUser; //Variável para inicializar user do firebase
 var logoutButton = document.getElementById("logout");
 var testUser = true
 
@@ -20,4 +20,16 @@ firebase.auth().onAuthStateChanged(function (user) {
         alert("Você não tem permissão para acessar esta página!")
         location.href = "user.html";
     }
-});
+});*/
+
+//As funções abaixo serão movidas para 'app.js'
+
+//Função para impedir acesso a página por outros usuários
+function admBlock() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user.email != "appestacionamentos@gmail.com") {
+            alert("Você não tem permissão para acessar esta página!");
+            location.href = "user.html";
+        }
+    })
+}
