@@ -34,6 +34,10 @@ function admBlock() {
     })
 }
 
+function click(e){
+	alert("clicado")
+}
+
 function showAllRequests() {
     //Buscando informs usuário atual:
     var requestList = document.getElementById('requestList');
@@ -46,16 +50,23 @@ function showAllRequests() {
 			var corpo = document.createElement("tbody");
 			var linha = document.createElement("tr");
 			
-			var checK = document.createElement("td");
-			var check = document.createElement("input");
-			check.setAttribute("type", "checkbox");
-			check.className = "check";
-			check.appendChild(checK);
-			linha.appendChild(check);
+			var ativar = document.createElement("button");
+			ativar.className = "btn btn-success btn-sm check";
+			ativar.innerHTML = 'Ativar';
+			
+			ativar.onclick = function(event){
+				
+			};
+			
+			linha.appendChild(ativar);
 			
 			var veiculoItem = document.createElement("td");
 			veiculoItem.innerHTML = values['veiculo'];
 			linha.appendChild(veiculoItem);
+			
+			var emailItem = document.createElement("td");
+			emailItem.innerHTML = values['proprietario']
+			linha.appendChild(emailItem);
 
 			var boardItem = document.createElement("td");
 			boardItem.innerHTML = values['placa'];
@@ -64,7 +75,7 @@ function showAllRequests() {
 			var horarioItem = document.createElement("td");
 			horarioItem.innerHTML = values['horario'];
 			linha.appendChild(horarioItem);
-
+			
 			if (values['status'] == "inativo"){
 				var timeItem = document.createElement("td");
 				timeItem.innerHTML = "--";
@@ -82,13 +93,9 @@ function showAllRequests() {
 				priceItem.innerHTML = preco(values);
 				linha.appendChild(priceItem);
 			}
-
-			var statusItem = document.createElement("td");
-			statusItem.innerHTML = values['status']
-			linha.appendChild(statusItem);
 			
 			var excluir = document.createElement("button");
-			excluir.className = "btn btn-danger";
+			excluir.className = "btn btn-danger btn-sm check";
 			excluir.innerHTML = 'Excluir';
 			linha.appendChild(excluir)
 			

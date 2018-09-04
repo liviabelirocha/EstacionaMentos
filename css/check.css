@@ -1,7 +1,11 @@
 .check{
-	margin-top: 15px;
+	margin-top: 7px;
 }
 
 td{
 	overflow: auto;
+}
+
+body{
+	background-color: #dedede;
 }
