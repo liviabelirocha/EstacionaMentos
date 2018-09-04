@@ -34,18 +34,16 @@ function admBlock() {
     })
 }
 
-function click(e){
-	alert("clicado")
-}
-
 function showAllRequests() {
     //Buscando informs usuário atual:
     var requestList = document.getElementById('requestList');
 	
     //Buscando reservas:
-    firebase.database().ref('requests').on('value', function (snapshot) {		
+    firebase.database().ref('requests').on('value', function (snapshot) {	
 		snapshot.forEach(function (values) {
 			values = values.val();
+			var key = Object.keys(snapshot.val())[0];
+
 			//Criando itens para tabela a partir dos dados da reserva:
 			var corpo = document.createElement("tbody");
 			var linha = document.createElement("tr");
@@ -55,9 +53,14 @@ function showAllRequests() {
 			ativar.innerHTML = 'Ativar';
 			
 			ativar.onclick = function(event){
-				
+			    var dataInicio = new Date().getTime();
+				firebase.database().ref('requests/' + key).update({
+					inicioMS: dataInicio,
+					status: "ativo"
+				});
+				location.href = "adm.html";
 			};
-			
+		
 			linha.appendChild(ativar);
 			
 			var veiculoItem = document.createElement("td");
@@ -94,10 +97,15 @@ function showAllRequests() {
 				linha.appendChild(priceItem);
 			}
 			
-			var excluir = document.createElement("button");
-			excluir.className = "btn btn-danger btn-sm check";
-			excluir.innerHTML = 'Excluir';
-			linha.appendChild(excluir)
+			var parar = document.createElement("button");
+			parar.className = "btn btn-danger btn-sm check";
+			parar.innerHTML = 'Parar';
+			
+			parar.onclick = function(event){
+				
+			}
+			
+			linha.appendChild(parar);
 			
 			//Motando tabela:
 			corpo.appendChild(linha);
@@ -106,3 +114,33 @@ function showAllRequests() {
 	});
 }
 
+function timeFinal(dataInicio){
+	var dataAtualizada = new Date().getTime();
+	var tempoDecorridoHoras = dataAtualizada - dataInicio;
+	tempoDecorridoHoras = tempoDecorridoHoras/3600000;
+	var tempoDecorridoMinutos = tempoDecorridoHoras%1*60;
+	var hora = ((tempoDecorridoHoras < 10) ? "0" : "") +
+		Math.floor(tempoDecorridoHoras) + 
+		":" + 
+		((tempoDecorridoMinutos < 10) ? "0" : "") + 
+		Math.floor(tempoDecorridoMinutos);
+	return hora;
+} 
+
+function preco(values){
+	var horas = parseInt(timeFinal(values["inicioMS"]).split(":")[0]);
+	var valor = 0;
+	if (values["veiculo"] == "moto"){
+		valor = 2 * (horas+1);
+		valor = "R$" + valor + ",00"
+	}
+	if (values["veiculo"] == "carro"){
+		valor = 4 * (horas+1);
+		valor = "R$" + valor + ",00"
+	}
+	if (values["veiculo"] == "grande porte"){
+		valor = 6 * (horas+1);
+		valor = "R$" + valor + ",00"
+	}
+	return valor;
+}

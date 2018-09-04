@@ -352,7 +352,7 @@ function showRequests() {
 	
     //Buscando reservas:
     firebase.database().ref('users/' + user.uid + '/requests').on('value', function (snapshot) {
-		for(key in snapshot.val()){
+			for(key in snapshot.val()){
 			document.getElementById('requestDefault').innerHTML = ''; //Limpando campo da lista
 			var caminho = 'requests/' + key +'/'; //Chave para caminho da reserva
 			
