@@ -39,11 +39,11 @@ function showAllRequests() {
     var requestList = document.getElementById('requestList');
 	
     //Buscando reservas:
-    firebase.database().ref('requests').on('value', function (snapshot) {	
+    firebase.database().ref('requests').on('value', function (snapshot) {
+		var cont = 0; //Contador para percorrer todos as reservas existentes
 		snapshot.forEach(function (values) {
 			values = values.val();
-			var key = Object.keys(snapshot.val())[0];
-
+			let key = Object.keys(snapshot.val())[cont]; //Pega a key da reserva pelo contador
 			//Criando itens para tabela a partir dos dados da reserva:
 			var corpo = document.createElement("tbody");
 			var linha = document.createElement("tr");
@@ -110,6 +110,8 @@ function showAllRequests() {
 			//Motando tabela:
 			corpo.appendChild(linha);
 			requestList.appendChild(corpo);
+
+			cont ++; //Adiciona mais ao contador para cada reserva para buscar nova chave
 		});
 	});
 }
