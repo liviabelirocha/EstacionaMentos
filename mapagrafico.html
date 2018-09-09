@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="imgs/favicon.png" />
+    <title>Estaciona Mentos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- CSS personalizado -->
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/check.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="display:flex; min-height:100vh; width:100%; margin: 0; padding: 0; align-items: center; justify-content: center; flex-direction:column">
+    <div id="mapagrafico" style="background-color: white">
+        <div class="table-responsive">
+            <table class="table">
+                <caption>Legenda: ...</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">A</th>
+                        <th scope="col">B</th>
+                        <th scope="col">C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><input type="image" src="imgs/carcinza.png" class="botao" id ="a1" onclick="escolher(this)" value="car"></td>
+                        <td><input type="image" src="imgs/carcinza.png" class="botao" id="b1" onclick="escolher(this)" value="car"></td>
+                        <td><input type="image" src="imgs/carcinza.png" class="botao" id="c1" onclick="escolher(this)" value="car"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td><input type="image" src="imgs/carcinza.png" class="botao" id="a2" onclick="escolher(this)" value="car"></td>
+                        <td><input type="image" src="imgs/carcinza.png" class="botao" id="b2" onclick="escolher(this)" value="car"></td>
+                        <td><input type="image" src="imgs/carcinza.png" class="botao" id="c2" onclick="escolher(this)" value="car"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td><input type="image" src="imgs/carcinza.png" class="botao" id="a3" onclick="escolher(this)" value="car"></td>
+                        <td><input type="image" src="imgs/carcinza.png" class="botao" id="b3" onclick="escolher(this)" value="car"></td>
+                        <td><input type="image" src="imgs/carcinza.png" class="botao" id="c3" onclick="escolher(this)" value="car"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!--Firebase-->
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="js/firebaseconfig.js"></script>
+    
+    <script>
+    function VerificaVaga (){
+        
+        firebase.database().ref('vagas').on('value' , function(snapshot) {
+            let cont = 0 //Contador para percorrer todas as vagas
+            snapshot.forEach(function (values) {
+                let vagaId = Object.keys(snapshot.val())[cont];
+                let vagaStatus = values.val();
+                if (vagaStatus == "disponivel") {
+                    let item = document.getElementById(vagaId);
+                    item.src = "imgs/cargreen.png"
+                    item.setAttribute('onclick','escolher(this)'); //Torna vaga clicável
+                }
+
+                if (vagaStatus == "indisponivel") {
+                    let item = document.getElementById(vagaId);
+                    item.src = "imgs/carred.png"
+                    item.setAttribute('onclick',''); //Desabilita vagas indisponíveis
+
+                }
+                cont ++;
+            });
+        })
+    }
+
+    function escolher(x){
+        document.getElementById('a1').setAttribute('onclick',''); //Desabilita click nas vagas
+        document.getElementById('a2').setAttribute('onclick',''); //Desabilita click nas vagas
+        document.getElementById('a3').setAttribute('onclick',''); //Desabilita click nas vagas
+        document.getElementById('b1').setAttribute('onclick',''); //Desabilita click nas vagas
+        document.getElementById('b2').setAttribute('onclick',''); //Desabilita click nas vagas
+        document.getElementById('b3').setAttribute('onclick',''); //Desabilita click nas vagas
+        document.getElementById('c1').setAttribute('onclick',''); //Desabilita click nas vagas
+        document.getElementById('c2').setAttribute('onclick',''); //Desabilita click nas vagas
+        document.getElementById('c3').setAttribute('onclick',''); //Desabilita click nas vagas
+        x.src = "imgs/carcinza.png";
+        x.setAttribute('onclick','reabilitar(this)');
+        console.log(x.value)
+    }
+    
+    function reabilitar(x){
+        x.src = "imgs/cargreen.png";
+        VerificaVaga();
+    }
+
+    VerificaVaga();
+    
+    </script>
+
+</body>
+
+</html>
