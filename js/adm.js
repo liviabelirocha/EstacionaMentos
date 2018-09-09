@@ -81,11 +81,11 @@ function showAllRequests() {
 			
 			if (values['status'] == "inativo"){
 				var timeItem = document.createElement("td");
-				timeItem.innerHTML = "--";
+				timeItem.innerHTML = values['tempoFinal'];
 				linha.appendChild(timeItem);
 
 				var priceItem = document.createElement("td");
-				priceItem.innerHTML = "--";
+				priceItem.innerHTML = values['precoFinal'];
 				linha.appendChild(priceItem);
 			}else{
 				var timeItem = document.createElement("td");
@@ -102,7 +102,12 @@ function showAllRequests() {
 			parar.innerHTML = 'Parar';
 			
 			parar.onclick = function(event){
-				
+				firebase.database().ref('requests/' + key).update({
+					tempoFinal: timeFinal(values['inicioMS']),
+					precoFinal: preco(values),
+					status: 'inativo'
+				});
+				location.href = "adm.html";
 			}
 			
 			linha.appendChild(parar);

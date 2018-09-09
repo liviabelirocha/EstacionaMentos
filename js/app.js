@@ -335,7 +335,9 @@ function reservaVaga(){
 		placa: board,
 		status: "inativo",
 		tempo: "--",
-		preço: "--"
+		preço: "--",
+		tempoFinal: "--",
+		precoFinal: "--",
 	});
 	
 	var update = {};
@@ -376,11 +378,11 @@ function showRequests() {
 				
 				if (values['status'] == "inativo"){
 					var timeItem = document.createElement("td");
-					timeItem.innerHTML = "--";
+					timeItem.innerHTML = values['tempoFinal'];
 					linha.appendChild(timeItem);
 
 					var priceItem = document.createElement("td");
-					priceItem.innerHTML = "--";
+					priceItem.innerHTML = values['precoFinal'];
 					linha.appendChild(priceItem);
 				}else{
 					var timeItem = document.createElement("td");
